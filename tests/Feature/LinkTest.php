@@ -160,24 +160,34 @@ class LinkTest extends TestCase
     {
         $this->link->update(['is_enabled' => false]);
 
-        $this->assertEquals($this->link->redirect, 0);
+        $this->assertEquals($this->link->redirects, 0);
 
         $this->actingAs($this->user)
             ->get(route('redirect', $this->link->slug))
             ->assertStatus(403);
 
-        $this->assertEquals($this->link->redirect, 0);
+        $this->assertEquals($this->link->refresh()->redirects, 0);
     }
 
     /** @test */
     function link_redirect_count_incremented_on_successful_redirection()
     {
-        $this->assertEquals($this->link->redirect, 0);
+        $this->assertEquals($this->link->redirects, 0);
 
         $this->actingAs($this->user)
             ->get(route('redirect', $this->link->slug))
             ->assertRedirect($this->link->url);
         
-        $this->assertEquals($this->link->redirect, 1);
+        $this->assertEquals($this->link->refresh()->redirects, 1);
+    }
+
+    /** @test */
+    function redirecting_to_non_existent_slug_returns_404()
+    {
+        $this->assertDatabaseMissing('links', ['slug' => 'random-slug-123']);
+
+        $this->actingAs($this->user)
+            ->get(route('redirect', 'random-slug-123'))
+            ->assertStatus(404);
     }
 }

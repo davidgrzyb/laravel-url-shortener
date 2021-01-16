@@ -1,0 +1,1 @@
+@livewire('link-table')
