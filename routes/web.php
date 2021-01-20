@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/links/create', [LinkController::class, 'create'])
         ->name('links.create');
 
-    Route::get('/links/edit', [LinkController::class, 'edit'])
+    Route::get('/links/{link}/edit', [LinkController::class, 'edit'])
         ->name('links.edit');
 });
 

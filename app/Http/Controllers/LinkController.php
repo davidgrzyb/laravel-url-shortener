@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Link;
 use Illuminate\Http\Request;
 
 class LinkController extends Controller
@@ -16,8 +17,8 @@ class LinkController extends Controller
         return view('links.create');
     }
 
-    public function edit()
+    public function edit(Link $link)
     {
-        return view('links.edit');
+        return view('links.edit')->with('link', $link);
     }
 }
