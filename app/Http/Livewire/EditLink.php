@@ -12,11 +12,14 @@ class EditLink extends Component
     public $slug;
     public $is_enabled;
 
-    protected $rules = [
-        'url' => 'required|url|max:255',
-        'slug' => 'required|alpha_dash|min:3|max:100',
-        'is_enabled' => 'required|boolean',
-    ];
+    public function rules()
+    {
+        return [
+		'url' => 'required|url|max:255',
+		'slug' => 'required|alpha_dash|min:3|max:100|unique:links,slug,'.$this->link_id,
+		'is_enabled' => 'required|boolean',
+	    ];
+    }
 
     public function updated($property)
     {
@@ -34,20 +37,10 @@ class EditLink extends Component
     public function saveLink()
     {
         $link = Link::findOrFail($this->link_id);
-
-        if ($this->checkSlugExists()) {
-            return $this->addError('slug', 'This slug is already taken.');
-        }
         
         $link->update($this->validate());
 
         return redirect(route('links'));
-    }
-
-    private function checkSlugExists()
-    {
-        $link = Link::where('slug', $this->slug)->first();
-        return $link && $link->id !== $this->link_id;
     }
 
     public function render()
