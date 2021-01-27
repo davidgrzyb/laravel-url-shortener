@@ -13,9 +13,9 @@ class EditLink extends Component
     public $is_enabled;
 
     protected $rules = [
-	        'url' => 'required|url|max:255',
-	        'slug' => 'required|alpha_dash|min:3|max:100|unique:links,slug',
-	        'is_enabled' => 'required|boolean',
+        'url' => 'required|url|max:255',
+        'slug' => 'required|alpha_dash|min:3|max:100|unique:links,slug',
+        'is_enabled' => 'required|boolean',
     ];
 
     public function updated($property)
