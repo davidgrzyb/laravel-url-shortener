@@ -25,7 +25,7 @@ class EditLink extends Component
 
     public function mount($link)
     {
-	$this->rules['slug'] .= ",{$link->id}";
+        $this->rules['slug'] .= ",{$link->id}";
         $this->link_id = $link->id;
         $this->url = $link->url;
         $this->slug = $link->slug;
