@@ -16,7 +16,7 @@ class EditLink extends Component
     {
         return [
 		'url' => 'required|url|max:255',
-		'slug' => 'required|alpha_dash|min:3|max:100|unique:links,slug,'.$this->link_id,
+		'slug' => "required|alpha_dash|min:3|max:100|unique:links,slug,{$this->link_id}",
 		'is_enabled' => 'required|boolean',
 	    ];
     }
