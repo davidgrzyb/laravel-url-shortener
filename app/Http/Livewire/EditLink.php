@@ -12,14 +12,11 @@ class EditLink extends Component
     public $slug;
     public $is_enabled;
 
-    public function rules()
-    {
-        return [
+    public $rules = [
 		'url' => 'required|url|max:255',
-		'slug' => "required|alpha_dash|min:3|max:100|unique:links,slug,{$this->link_id}",
+		'slug' => "required|alpha_dash|min:3|max:100|unique:links,slug",
 		'is_enabled' => 'required|boolean',
-	    ];
-    }
+    ];
 
     public function updated($property)
     {
@@ -28,6 +25,7 @@ class EditLink extends Component
 
     public function mount($link)
     {
+	$this->rules['slug'] .= ",{$link->id}";
         $this->link_id = $link->id;
         $this->url = $link->url;
         $this->slug = $link->slug;
