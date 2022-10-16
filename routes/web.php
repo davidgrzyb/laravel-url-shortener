@@ -18,14 +18,16 @@ use App\Http\Controllers\LinkController;
 Route::redirect('/', '/login');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/links', [LinkController::class, 'index'])
+    Route::controller(LinkController::class)->group(function() {
+        Route::get('/links', 'index')
         ->name('links');
 
-    Route::get('/links/create', [LinkController::class, 'create'])
-        ->name('links.create');
+        Route::get('/links/create', 'create')
+            ->name('links.create');
 
-    Route::get('/links/{link}/edit', [LinkController::class, 'edit'])
-        ->name('links.edit');
+        Route::get('/links/{link}/edit', 'edit')
+            ->name('links.edit');
+    });
 });
 
 require __DIR__.'/auth.php';
