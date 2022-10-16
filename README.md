@@ -1,6 +1,6 @@
 # About Laravel URL Shortener
 
-- A simple laravel url shortoner made with breeze and livewire.
+A simple laravel url shortener made with breeze and livewire.
 
 ## Setting up Local Environment
 
