@@ -4,9 +4,7 @@
 
 ## Setting up Local Environment
 
-* PHP 8+
-
-The things you need before installing the project
+Required 
 
 * PHP 8+
 
@@ -17,8 +15,6 @@ The things you need before installing the project
 ## Installation
 
 * Run `composer install` on your cmd or terminal to install composer and make sure you have php installed in your system.
-
-* Run `composer update`.
 
 * Navigate on the cmd, the folder path you want to store this project in and run the following code
 
@@ -38,6 +34,8 @@ $ git clone https://github.com/davidgrzyb/laravel-url-shortener.git
 * Then run the following code on your terminal
 
 ```bash
+$ composer update
+
 # To generate app key
 $ php artisan key:generate
 
@@ -54,7 +52,9 @@ $ php artisan serve
 
 ## Login Details
 
-``bash
+```bash
+
 Email: user@test.com
 Password: password
+
 ```
